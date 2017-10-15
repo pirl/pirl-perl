@@ -1,12 +1,12 @@
-package PIRL::Action::net_version;
+package PIRL::Action::net_listening;
 use Moose;
 extends 'PIRL::Action';
 
 sub get_content {
     return {
-        "method" => "net_version",
+        "method" => "net_listening",
         "jsonrpc"   => "2.0",
-        "id"    => "3125659152"
+        "id"    => $_[0]->net_id
     };
 }
 1;
