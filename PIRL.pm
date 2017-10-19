@@ -46,7 +46,7 @@ sub request {
 
                 $content->{'result'} =~ s/^0x(.*?)$/$1/;
                 $content->{'result'} = '0'.$content->{'result'} if length($content->{'result'}) == 1;
-print $content->{'result'}."\n";
+
                 return hex($content->{'result'});
             }
             elsif($_[0]->action->return_encoding eq 'DATA') {
