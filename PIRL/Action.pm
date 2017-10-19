@@ -11,6 +11,18 @@ use PIRL::Action::eth_hashrate;
 use PIRL::Action::eth_gasPrice;
 use PIRL::Action::eth_accounts;
 use PIRL::Action::eth_blockNumber;
+use PIRL::Action::eth_getBalance;
+
+has 'address'   => (
+        is  => 'rw',
+        isa => 'Str'
+    );
+
+has 'block'   => (
+        is  => 'rw',
+        isa => 'Str',
+        default => 'latest'
+    );
 
 has 'net_id'  => (
         is      => 'ro',

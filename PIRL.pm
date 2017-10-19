@@ -4,6 +4,7 @@ use LWP::UserAgent;
 use JSON;
 use PIRL::Action;
 use Data::Dumper;
+use Math::BigInt;
 
 has 'action'		=> (
         is	=> 'rw',
@@ -43,10 +44,17 @@ sub request {
         if ($content->{'result'}) {
             if($_[0]->action->return_encoding eq 'QUAN') {
 
-                $content->{'result'} =~ s/^0x(.*?)$/$1/;
-                $content->{'result'} = '0'.$content->{'result'} if length($content->{'result'}) == 1;
+                #$content->{'result'} =~ s/^0x(.*?)$/$1/;
+                #$content->{'result'} = '0'.$content->{'result'} if length($content->{'result'}) == 1;
 
-                return hex($content->{'result'});
+                my $big_int = Math::BigInt->from_hex($content->{'result'});
+
+                if(scalar(@{$big_int->{'value'}}) > 1) {
+                    my $return = $big_int->{'value'}[2] . ',' . $big_int->{'value'}[1];
+                    return $return;
+                } else {
+                    return $big_int->{'value'}[0];
+                }
             }
             elsif($_[0]->action->return_encoding eq 'DATA') {
                 return $content->{'result'};
