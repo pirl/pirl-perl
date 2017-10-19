@@ -25,6 +25,7 @@ use PIRL::Action::eth_sendRawTransaction;
 use PIRL::Action::eth_call;
 use PIRL::Action::eth_estimateGas;
 use PIRL::Action::eth_getBlockByHash;
+use PIRL::Action::eth_getBlockByNumber;
 
 has 'address'   => (
         is  => 'rw',
@@ -35,6 +36,7 @@ has 'blockNumber'   => (
         is  => 'rw',
         isa => 'Str',
         default => 'latest'
+        ###TODO Trigger auf HEX Function
     );
 
 has 'blockHash'   => (
