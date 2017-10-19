@@ -2,7 +2,13 @@ package PIRL::Action::net_version;
 use Moose;
 extends 'PIRL::Action';
 
+
+#$_[0]->return_encoding = 'STR';
+
 sub get_content {
+
+    $_[0]->return_encoding('STR');
+
     return {
         "method" => "net_version",
         "jsonrpc"   => "2.0",

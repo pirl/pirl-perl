@@ -34,8 +34,23 @@ sub request {
     my $resp = $ua->post('http://'.$_[0]->hostname.':'.$_[0]->port, Content => $post_content);
     if($resp->is_success) {
         my $content = from_json($resp->decoded_content());
+
+        ###TODO Auslagern
         if ($content->{'result'}) {
-            return $content->{'result'};
+
+            if($_[0]->action->return_encoding eq 'QUAN') {
+
+                $content->{'result'} =~ s/^0x(.*?)$/$1/;
+                $content->{'result'} = '0'.$content->{'result'} if length($content->{'result'}) == 1;
+
+                return hex($content->{'result'});
+            }
+            elsif($_[0]->action->return_encoding eq 'STR') {
+                return $content->{'result'};
+            }
+            elsif($_[0]->action->return_encoding eq 'BOOL') {
+                return 'true' ? $content->{'result'} == 1 : 'false';
+            }
         }
     } else {
         warn $resp->decoded_content();
