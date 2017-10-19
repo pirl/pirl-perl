@@ -29,7 +29,8 @@ sub request {
     my $params = $_[0]->action->get_content;
 
     my $ua = LWP::UserAgent->new();
-    my $post_content = to_json($params);
+    my $post_content = encode_json($params);
+
     $ua->default_header( 'Content-Type' => 'application/json' );
     my $resp = $ua->post('http://'.$_[0]->hostname.':'.$_[0]->port, Content => $post_content);
     if($resp->is_success) {

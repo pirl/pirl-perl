@@ -24,6 +24,7 @@ use PIRL::Action::eth_sendTransaction;
 use PIRL::Action::eth_sendRawTransaction;
 use PIRL::Action::eth_call;
 use PIRL::Action::eth_estimateGas;
+use PIRL::Action::eth_getBlockByHash;
 
 has 'address'   => (
         is  => 'rw',
