@@ -13,6 +13,7 @@ use PIRL::Action::eth_accounts;
 use PIRL::Action::eth_blockNumber;
 use PIRL::Action::eth_getBalance;
 use PIRL::Action::eth_getStorageAt;
+use PIRL::Action::eth_getTransactionCount;
 
 has 'address'   => (
         is  => 'rw',
