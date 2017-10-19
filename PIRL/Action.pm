@@ -12,6 +12,7 @@ use PIRL::Action::eth_gasPrice;
 use PIRL::Action::eth_accounts;
 use PIRL::Action::eth_blockNumber;
 use PIRL::Action::eth_getBalance;
+use PIRL::Action::eth_getStorageAt;
 
 has 'address'   => (
         is  => 'rw',
