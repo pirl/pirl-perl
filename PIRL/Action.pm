@@ -7,6 +7,7 @@ use PIRL::Action::eth_protocolVersion;
 use PIRL::Action::eth_syncing;
 use PIRL::Action::eth_coinbase;
 use PIRL::Action::eth_mining;
+use PIRL::Action::eth_hashrate;
 
 has 'net_id'  => (
         is      => 'ro',
