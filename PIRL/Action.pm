@@ -21,6 +21,7 @@ use PIRL::Action::eth_getUncleCountByBlockNumber;
 use PIRL::Action::eth_getCode;
 use PIRL::Action::eth_sign;
 use PIRL::Action::eth_sendTransaction;
+use PIRL::Action::eth_sendRawTransaction;
 
 has 'address'   => (
         is  => 'rw',
