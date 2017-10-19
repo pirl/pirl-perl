@@ -16,6 +16,7 @@ use PIRL::Action::eth_getStorageAt;
 use PIRL::Action::eth_getTransactionCount;
 use PIRL::Action::eth_getBlockTransactionCountByHash;
 use PIRL::Action::eth_getBlockTransactionCountByNumber;
+use PIRL::Action::eth_getUncleCountByBlockHash;
 
 has 'address'   => (
         is  => 'rw',
