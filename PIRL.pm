@@ -3,6 +3,7 @@ use Moose;
 use LWP::UserAgent;
 use JSON;
 use PIRL::Action;
+use Data::Dumper;
 
 has 'action'		=> (
         is	=> 'rw',
@@ -33,7 +34,10 @@ sub request {
     $ua->default_header( 'Content-Type' => 'application/json' );
     my $resp = $ua->post('http://'.$_[0]->hostname.':'.$_[0]->port, Content => $post_content);
     if($resp->is_success) {
+
         my $content = from_json($resp->decoded_content());
+
+ print Dumper ($content->{'result'});
 
         ###TODO Auslagern
         if ($content->{'result'}) {
@@ -45,14 +49,27 @@ sub request {
 
                 return hex($content->{'result'});
             }
+            elsif($_[0]->action->return_encoding eq 'Object|Boolean') {
+                ###TODO eth_syncing
+                die $content->{'result'};
+                if($content->{'result'} == 0) {
+                    return 'false';
+                } else {
+                    die;
+                    return $content->{'result'}; ###TODO
+                }
+            }
             elsif($_[0]->action->return_encoding eq 'STR') {
                 return $content->{'result'};
             }
             elsif($_[0]->action->return_encoding eq 'BOOL') {
                 return 'true' ? $content->{'result'} == 1 : 'false';
             }
+        } else {
+            return 'false';
         }
     } else {
+
         warn $resp->decoded_content();
         warn $resp->status_line;
     }
