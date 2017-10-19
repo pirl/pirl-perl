@@ -9,6 +9,7 @@ use PIRL::Action::eth_coinbase;
 use PIRL::Action::eth_mining;
 use PIRL::Action::eth_hashrate;
 use PIRL::Action::eth_gasPrice;
+use PIRL::Action::eth_accounts;
 
 has 'net_id'  => (
         is      => 'ro',

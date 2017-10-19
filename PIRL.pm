@@ -37,11 +37,10 @@ sub request {
 
         my $content = from_json($resp->decoded_content());
 
- print Dumper ($content->{'result'});
+ print Dumper ($content);
 
         ###TODO Auslagern
         if ($content->{'result'}) {
-
             if($_[0]->action->return_encoding eq 'QUAN') {
 
                 $content->{'result'} =~ s/^0x(.*?)$/$1/;
@@ -51,6 +50,11 @@ sub request {
             }
             elsif($_[0]->action->return_encoding eq 'DATA') {
                 return $content->{'result'};
+            }
+            elsif($_[0]->action->return_encoding eq 'ArrayOfDATA') {
+my @return = @{$content->{'result'}};
+                #die Dumper @return;
+                return \@return;
             }
             elsif($_[0]->action->return_encoding eq 'Object|Boolean') {
                 ###TODO eth_syncing
