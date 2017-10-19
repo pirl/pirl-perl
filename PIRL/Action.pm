@@ -10,6 +10,7 @@ use PIRL::Action::eth_mining;
 use PIRL::Action::eth_hashrate;
 use PIRL::Action::eth_gasPrice;
 use PIRL::Action::eth_accounts;
+use PIRL::Action::eth_blockNumber;
 
 has 'net_id'  => (
         is      => 'ro',
