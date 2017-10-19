@@ -28,8 +28,6 @@ sub request {
 
     my $params = $_[0]->action->get_content;
 
-
-
     my $ua = LWP::UserAgent->new();
     my $post_content = to_json($params);
     $ua->default_header( 'Content-Type' => 'application/json' );
