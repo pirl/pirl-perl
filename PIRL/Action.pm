@@ -20,10 +20,15 @@ has 'address'   => (
         isa => 'Str'
     );
 
-has 'block'   => (
+has 'blockNumber'   => (
         is  => 'rw',
         isa => 'Str',
         default => 'latest'
+    );
+
+has 'blockHash'   => (
+        is  => 'rw',
+        isa => 'Str'
     );
 
 has 'net_id'  => (

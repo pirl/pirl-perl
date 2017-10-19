@@ -12,7 +12,7 @@ sub get_content {
         "method" => "eth_getTransactionCount",
         "jsonrpc"   => "2.0",
         "id"    => $_[0]->net_id,
-        "params" => [$_[0]->address, $_[0]->block]
+        "params" => [$_[0]->address, $_[0]->blockNumber]
     };
 }
 1;
