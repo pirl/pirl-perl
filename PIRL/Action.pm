@@ -5,6 +5,7 @@ use PIRL::Action::net_listening;
 use PIRL::Action::net_peerCount;
 use PIRL::Action::eth_protocolVersion;
 use PIRL::Action::eth_syncing;
+use PIRL::Action::eth_coinbase;
 
 has 'net_id'  => (
         is      => 'ro',

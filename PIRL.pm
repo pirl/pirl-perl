@@ -49,6 +49,9 @@ sub request {
 
                 return hex($content->{'result'});
             }
+            elsif($_[0]->action->return_encoding eq 'DATA') {
+                return $content->{'result'};
+            }
             elsif($_[0]->action->return_encoding eq 'Object|Boolean') {
                 ###TODO eth_syncing
                 die $content->{'result'};
