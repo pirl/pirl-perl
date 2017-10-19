@@ -3,6 +3,7 @@ use Moose;
 use PIRL::Action::net_version;
 use PIRL::Action::net_listening;
 use PIRL::Action::net_peerCount;
+use PIRL::Action::eth_protocolVersion;
 
 has 'net_id'  => (
         is      => 'ro',
