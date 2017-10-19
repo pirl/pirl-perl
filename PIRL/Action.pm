@@ -23,6 +23,7 @@ use PIRL::Action::eth_sign;
 use PIRL::Action::eth_sendTransaction;
 use PIRL::Action::eth_sendRawTransaction;
 use PIRL::Action::eth_call;
+use PIRL::Action::eth_estimateGas;
 
 has 'address'   => (
         is  => 'rw',
