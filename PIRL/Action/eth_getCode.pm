@@ -6,7 +6,7 @@ extends 'PIRL::Action';
 
 sub get_content {
 
-    $_[0]->return_encoding('QUAN');
+    $_[0]->return_encoding('DATA');
 
     return {
         "method" => "eth_getCode",

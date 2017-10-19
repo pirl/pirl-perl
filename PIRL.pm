@@ -55,7 +55,7 @@ sub request {
                 }
             }
             elsif($_[0]->action->return_encoding eq 'DATA') {
-                return $content->{'result'};
+                return $content->{'result'} eq '0x' ? '0' : $content->{'result'};
             }
             elsif($_[0]->action->return_encoding eq 'ArrayOfDATA') {
 my @return = @{$content->{'result'}};
