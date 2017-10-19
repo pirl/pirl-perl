@@ -17,6 +17,7 @@ use PIRL::Action::eth_getTransactionCount;
 use PIRL::Action::eth_getBlockTransactionCountByHash;
 use PIRL::Action::eth_getBlockTransactionCountByNumber;
 use PIRL::Action::eth_getUncleCountByBlockHash;
+use PIRL::Action::eth_getUncleCountByBlockNumber;
 
 has 'address'   => (
         is  => 'rw',
@@ -26,7 +27,7 @@ has 'address'   => (
 has 'blockNumber'   => (
         is  => 'rw',
         isa => 'Str',
-        'default' => 'latest'
+        default => 'latest'
     );
 
 has 'blockHash'   => (
