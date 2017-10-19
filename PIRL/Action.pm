@@ -22,6 +22,7 @@ use PIRL::Action::eth_getCode;
 use PIRL::Action::eth_sign;
 use PIRL::Action::eth_sendTransaction;
 use PIRL::Action::eth_sendRawTransaction;
+use PIRL::Action::eth_call;
 
 has 'address'   => (
         is  => 'rw',
