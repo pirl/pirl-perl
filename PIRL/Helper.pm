@@ -12,7 +12,7 @@ sub get_return {
     my ($self, $return_encoding) = @_;
     my $content = $self->node_result;
 
-    die Dumper $content->{'result'};
+#    die Dumper $content->{'result'};
 
     if ($content->{'result'}) {
         if($return_encoding eq 'QUAN') {
@@ -50,9 +50,46 @@ sub get_return {
         elsif($return_encoding eq 'BOOL') {
             return 'true' ? $content->{'result'} == 1 : 'false';
         }
+        elsif($return_encoding eq 'Object') {
+            my $return = {
+                'number'  => $self->get_bigHex($content->{'result'}->{'number'}),
+                'hash' => $content->{'result'}->{'hash'} eq '0x' ? '0' : $content->{'result'}->{'hash'},
+                'parentHash'  => $content->{'result'}->{'parentHash'} eq '0x' ? '0' : $content->{'result'}->{'parentHash'},
+                'nonce' => $content->{'result'}->{'nonce'},
+                'sha3Uncles'  => $content->{'result'}->{'sha3Uncles'},
+                'logsBloom'   => $content->{'result'}->{'logsBloom'},
+                'transactionRoot' => $content->{'result'}->{'transactionRoot'},
+                'stateRoot'   => $content->{'result'}->{'stateRoot'},
+                'receiptsRoot' => $content->{'result'}->{'receiptsRoot'},
+                'miner'   => $content->{'result'}->{'miner'},
+                'difficulty' => $self->get_bigHex($content->{'result'}->{'difficulty'}),
+                'totalDifficulty' => $self->get_bigHex($content->{'result'}->{'totalDifficulty'}),
+                'extraData'   => $content->{'result'}->{'extraData'},
+                'size'    => $self->get_bigHex($content->{'result'}->{'size'}),
+                'gasLimit'    => $self->get_bigHex($content->{'result'}->{'gasLimit'}),
+                'gasUsed' => $self->get_bigHex($content->{'result'}->{'gasUsed'}),
+                'timestamp' => $self->get_bigHex($content->{'result'}->{'timestamp'}),
+                'transactions'    => $content->{'result'}->{'transactions'}, ###TODO###
+                'uncles' => $content->{'result'}->{'uncles'}
+            };
+
+
+
+            return $return;
+        }
     } else {
         return 'false';
     }
 }
+
+sub get_bigHex($) {
+    my($self, $hex) = @_;
+
+    my $big_int = Math::BigInt->from_hex($hex);
+
+    return $big_int->numify();
+
+}
+
 
 1;

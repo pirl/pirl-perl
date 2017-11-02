@@ -18,7 +18,7 @@ sub get_content {
         "method" => "eth_getBlockByNumber",
         "jsonrpc"   => "2.0",
         "id"    => $_[0]->net_id,
-        "params" => [$_[0]->blockNumber, $details]
+        "params" => [$_[0]->blockNumberHash, $details]
     };
 }
 1;

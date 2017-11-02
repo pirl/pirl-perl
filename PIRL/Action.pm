@@ -36,8 +36,15 @@ has 'address'   => (
 has 'blockNumber'   => (
         is  => 'rw',
         isa => 'Str',
-        default => 'latest'
+        trigger => \&blockNumber_to_hex
         ###TODO Trigger auf HEX Function
+    );
+
+has 'blockNumberHash'   => (
+        is => 'rw',
+        isa => 'Str',
+        default => 'latest'
+
     );
 
 has 'blockHash'   => (
@@ -56,4 +63,16 @@ has 'return_encoding'   => (
         'isa'   => 'Str',
         'default'   => 'HEX'
     );
+
+sub blockNumber_to_hex {
+    my($self, $number) = @_;
+
+
+
+    #die sprintf("0x%x", $number);
+
+    $self->blockNumberHash(sprintf("0x%x",$number));
+
+
+}
 1;

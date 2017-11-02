@@ -38,7 +38,7 @@ sub request {
 
         my $content = from_json($resp->decoded_content());
 
- #print Dumper ($content);
+ print Dumper ($content);
 
         my $helper = PIRL::Helper->new(node_result => $content);
         my $return = $helper->get_return($_[0]->action->return_encoding);
