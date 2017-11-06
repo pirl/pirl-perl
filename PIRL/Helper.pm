@@ -50,12 +50,12 @@ sub get_return {
         elsif($return_encoding eq 'BOOL') {
             return 'true' ? $content->{'result'} == 1 : 'false';
         }
-        elsif($return_encoding eq 'Object') {
+        elsif($return_encoding eq 'HashObject') {
             my $return = {
                 'number'  => $self->get_bigHex($content->{'result'}->{'number'}),
                 'hash' => $content->{'result'}->{'hash'} eq '0x' ? '0' : $content->{'result'}->{'hash'},
                 'parentHash'  => $content->{'result'}->{'parentHash'} eq '0x' ? '0' : $content->{'result'}->{'parentHash'},
-                'nonce' => $content->{'result'}->{'nonce'},
+                'nonce' => $self->get_bigHex($content->{'result'}->{'nonce'}),
                 'sha3Uncles'  => $content->{'result'}->{'sha3Uncles'},
                 'logsBloom'   => $content->{'result'}->{'logsBloom'},
                 'transactionRoot' => $content->{'result'}->{'transactionRoot'},
@@ -73,9 +73,22 @@ sub get_return {
                 'uncles' => $content->{'result'}->{'uncles'}
             };
 
-
-
             return $return;
+        }
+        elsif($return_encoding eq 'TransactionObject') {
+            my $return = {
+                'hash' => $content->{'result'}->{'hash'} eq '0x' ? '0' : $content->{'result'}->{'hash'},
+                'nonce' => => $self->get_bigHex($content->{'result'}->{'nonce'}),
+                'blockHash' => $content->{'result'}->{'blockHash'} eq '0x' ? '0' : $content->{'result'}->{'blockHash'},
+                'blockNumber'  => $self->get_bigHex($content->{'result'}->{'blockNumber'}),
+                'transactionIndex' => $self->get_bigHex($content->{'result'}->{'transactionIndex'}),
+                'from' => $content->{'result'}->{'from'},
+                'to'    => $content->{'result'}->{'to'},
+                'value' => $self->get_bigHex($content->{'result'}->{'value'}),
+                'gasPrice' => $self->get_bigHex($content->{'result'}->{'gasPrice'}),
+                'gas'   => $self->get_bigHex($content->{'result'}->{'gas'}),
+                'data'  => $content->{'result'}->{'data'}
+            };
         }
     } else {
         return 'false';

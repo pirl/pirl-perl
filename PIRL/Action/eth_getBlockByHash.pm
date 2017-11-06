@@ -10,7 +10,7 @@ has 'details'   => (
 
 sub get_content {
 
-    $_[0]->return_encoding('Object');
+    $_[0]->return_encoding('HashObject');
 
     my $details = $_[0]->details == 1 ? JSON::true : JSON::false;
 
