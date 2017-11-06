@@ -84,7 +84,7 @@ sub get_return {
                 'transactionIndex' => $self->get_bigHex($content->{'result'}->{'transactionIndex'}),
                 'from' => $content->{'result'}->{'from'},
                 'to'    => $content->{'result'}->{'to'},
-                'value' => $self->get_bigHex($content->{'result'}->{'value'}),
+                'value' => $self->val_to_pirl($self->get_bigHex($content->{'result'}->{'value'})),
                 'gasPrice' => $self->get_bigHex($content->{'result'}->{'gasPrice'}),
                 'gas'   => $self->get_bigHex($content->{'result'}->{'gas'}),
                 'data'  => $content->{'result'}->{'data'}
@@ -102,6 +102,13 @@ sub get_bigHex($) {
 
     return $big_int->numify();
 
+}
+
+
+sub val_to_pirl {
+    my($self, $val) = @_;
+
+    return $val * 10 ** -18;
 }
 
 
