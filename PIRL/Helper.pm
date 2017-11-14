@@ -12,6 +12,8 @@ sub get_return {
     my ($self, $return_encoding) = @_;
     my $content = $self->node_result;
 
+#die Dumper $content;
+
 #    die Dumper $content->{'result'};
 
     if ($content->{'result'}) {
@@ -20,11 +22,13 @@ sub get_return {
             my $big_int = Math::BigInt->from_hex($content->{'result'});
 
             if(scalar(@{$big_int->{'value'}}) > 1) {
-                my $return = $big_int->{'value'}[2] . ',' . $big_int->{'value'}[1];
+                my $return = $big_int->{'value'}[2] . '.' . $big_int->{'value'}[1];
                 return $return;
             } else {
                 return $big_int->{'value'}[0];
             }
+
+            #return &get_bigHex($content->{'result'});
         }
         elsif($return_encoding eq 'DATA') {
             return $content->{'result'} eq '0x' ? '0' : $content->{'result'};

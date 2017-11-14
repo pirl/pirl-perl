@@ -27,6 +27,7 @@ use PIRL::Action::eth_estimateGas;
 use PIRL::Action::eth_getBlockByHash;
 use PIRL::Action::eth_getBlockByNumber;
 use PIRL::Action::eth_getTransactionByHash;
+use PIRL::Action::eth_getTransactionByBlockNumberAndIndex;
 
 
 has 'address'   => (
